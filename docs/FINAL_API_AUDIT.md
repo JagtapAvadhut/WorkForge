@@ -189,7 +189,76 @@ Remaining hardening (non-blocking): rate limiter is in-memory; file-upload paths
 | /notifications | PASS | List + unread |
 | /admin/* | Partial | Depends on coarse FE roles; APIs available to SYSTEM_ADMIN |
 
-**Screenshots:** Not captured in this run (no browser automation). Placeholder note: [screenshots/README.txt](screenshots/README.txt). Validate visually at http://localhost:5173.
+### UI Screenshots
+
+Captured from the live app at http://localhost:5173 (seed user `seedadmin`) on 2026-09-24.
+
+#### Login
+
+![Login](screenshots/01-login.png)
+
+#### Dashboard
+
+![Dashboard](screenshots/02-dashboard.png)
+
+#### Projects
+
+![Projects](screenshots/03-projects.png)
+
+#### Project detail (MWS)
+
+![Project detail](screenshots/04-project-detail.png)
+
+#### Issue list
+
+![Issue list](screenshots/05-issue-list.png)
+
+#### Issue detail (MWS-1)
+
+![Issue detail](screenshots/06-issue-detail.png)
+
+#### Create issue
+
+![Create issue](screenshots/07-create-issue.png)
+
+#### Board
+
+![Board](screenshots/08-board.png)
+
+#### Backlog
+
+![Backlog](screenshots/09-backlog.png)
+
+#### Sprints
+
+![Sprints](screenshots/10-sprints.png)
+
+#### Global search
+
+![Search](screenshots/11-search.png)
+
+#### Notifications
+
+![Notifications](screenshots/12-notifications.png)
+
+#### My Work
+
+![My Work](screenshots/13-my-work.png)
+
+#### Filters
+
+![Filters](screenshots/14-filters.png)
+
+#### Swagger / OpenAPI evidence
+
+![Swagger](screenshots/15-swagger.png)
+
+Re-capture with:
+
+```powershell
+cd d:\IVL\frontend
+node .\capture-screenshots.cjs
+```
 
 ---
 

@@ -17,6 +17,20 @@ WorkForge supports organizations, projects, issues with workflows, sprints, Kanb
 
 In local development, the Vite dev server proxies `/api` to `http://localhost:8080`. See [docs/architecture.md](docs/architecture.md) for module boundaries and data flow.
 
+## UI screenshots
+
+Captured from the running app during QA. Full gallery and audit notes: [docs/FINAL_API_AUDIT.md](docs/FINAL_API_AUDIT.md#ui-screenshots).
+
+| Screen | Preview |
+|--------|---------|
+| Login | ![Login](docs/screenshots/01-login.png) |
+| Dashboard | ![Dashboard](docs/screenshots/02-dashboard.png) |
+| Projects | ![Projects](docs/screenshots/03-projects.png) |
+| Board | ![Board](docs/screenshots/08-board.png) |
+| Issue detail | ![Issue detail](docs/screenshots/06-issue-detail.png) |
+
+Additional screenshots (backlog, sprints, search, notifications, filters, Swagger) are under [`docs/screenshots/`](docs/screenshots/).
+
 ## Technology stack
 
 | Layer | Technology |
