@@ -1,0 +1,63 @@
+# Optional local infrastructure for WorkForge.
+# The Spring Boot backend does NOT require Docker — you can use a local PostgreSQL install instead.
+#
+# SECURITY: POSTGRES_PASSWORD defaults to "postgres" for local development only.
+# Override POSTGRES_PASSWORD (and use strong secrets) in any shared or production environment.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: workforge-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-workforge}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - workforge_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres} -d ${DB_NAME:-workforge}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: workforge-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - workforge_redis_data:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Kafka (optional — not used by the backend yet). Uncomment when event streaming is wired in.
+  #
+  # zookeeper:
+  #   image: confluentinc/cp-zookeeper:7.6.1
+  #   environment:
+  #     ZOOKEEPER_CLIENT_PORT: 2181
+  #     ZOOKEEPER_TICK_TIME: 2000
+  #
+  # kafka:
+  #   image: confluentinc/cp-kafka:7.6.1
+  #   depends_on:
+  #     - zookeeper
+  #   ports:
+  #     - "9092:9092"
+  #   environment:
+  #     KAFKA_BROKER_ID: 1
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+  #     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+volumes:
+  workforge_pg_data:
+  workforge_redis_data:

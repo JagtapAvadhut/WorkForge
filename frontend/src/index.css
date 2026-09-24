@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  WorkForge design tokens.
+  Enterprise neutral palette (slate/zinc) with a single blue-steel/teal accent.
+  Colors are declared as space-separated RGB channels so Tailwind's
+  `rgb(var(--token) / <alpha-value>)` opacity modifiers work.
+*/
+@layer base {
+  :root {
+    --wf-canvas: 244 246 248; /* slate-50-ish */
+    --wf-surface: 255 255 255;
+    --wf-surface-raised: 255 255 255;
+    --wf-overlay: 15 23 42;
+
+    --wf-border: 226 232 240; /* slate-200 */
+    --wf-border-strong: 203 213 225; /* slate-300 */
+
+    --wf-text: 15 23 42; /* slate-900 */
+    --wf-text-muted: 71 85 105; /* slate-600 */
+    --wf-text-subtle: 100 116 139; /* slate-500 */
+    --wf-text-inverted: 248 250 252;
+
+    --wf-accent: 13 148 136; /* teal-600 */
+    --wf-accent-hover: 15 118 110; /* teal-700 */
+    --wf-accent-soft: 204 251 241; /* teal-100 */
+    --wf-accent-contrast: 255 255 255;
+
+    --wf-success: 22 163 74;
+    --wf-warning: 202 138 4;
+    --wf-danger: 220 38 38;
+    --wf-info: 2 132 199;
+
+    color-scheme: light;
+  }
+
+  .dark {
+    --wf-canvas: 9 12 18; /* deep slate */
+    --wf-surface: 17 22 31;
+    --wf-surface-raised: 24 31 42;
+    --wf-overlay: 2 4 8;
+
+    --wf-border: 39 47 61;
+    --wf-border-strong: 55 65 82;
+
+    --wf-text: 226 232 240;
+    --wf-text-muted: 148 163 184;
+    --wf-text-subtle: 100 116 139;
+    --wf-text-inverted: 15 23 42;
+
+    --wf-accent: 45 212 191; /* teal-400 for dark contrast */
+    --wf-accent-hover: 20 184 166;
+    --wf-accent-soft: 19 61 60;
+    --wf-accent-contrast: 6 20 20;
+
+    --wf-success: 34 197 94;
+    --wf-warning: 234 179 8;
+    --wf-danger: 248 113 113;
+    --wf-info: 56 189 248;
+
+    color-scheme: dark;
+  }
+
+  * {
+    border-color: rgb(var(--wf-border));
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-content font-sans antialiased;
+    /* Subtle atmospheric background — never flat white. */
+    background-image:
+      radial-gradient(1200px 600px at 85% -10%, rgb(var(--wf-accent) / 0.06), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgb(var(--wf-info) / 0.05), transparent 55%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgb(var(--wf-accent) / 0.25);
+  }
+
+  /* Focus visibility for accessibility */
+  :focus-visible {
+    outline: 2px solid rgb(var(--wf-accent));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .wf-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--wf-border-strong)) transparent;
+  }
+  .wf-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .wf-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--wf-border-strong));
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  .wf-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .wf-input {
+    @apply w-full rounded-md border border-border bg-surface px-3 py-2 text-sm text-content shadow-sm
+      placeholder:text-content-subtle
+      focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30
+      disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .wf-label {
+    @apply mb-1.5 block text-sm font-medium text-content-muted;
+  }
+}

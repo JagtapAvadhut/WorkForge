@@ -1,0 +1,66 @@
+# ---- Environment and secrets ----
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+
+# ---- WorkForge runtime data ----
+data/
+backend/data/
+
+# ---- Java / Maven (backend) ----
+backend/target/
+backend/.apt_generated
+backend/.classpath
+backend/.factorypath
+backend/.project
+backend/.settings/
+backend/.springBeans
+backend/.sts4-cache
+backend/HELP.md
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/nbproject/private/
+backend/nbbuild/
+backend/dist/
+backend/nbdist/
+backend/.nb-gradle/
+backend/build/
+!backend/**/src/main/**/target/
+!backend/**/src/test/**/target/
+!backend/**/src/main/**/build/
+!backend/**/src/test/**/build/
+
+# ---- Node / frontend ----
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+frontend/logs/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# ---- IDE ----
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Test / coverage artifacts ----
+*.log
+coverage/
+.nyc_output/

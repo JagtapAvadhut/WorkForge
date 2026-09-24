@@ -1,0 +1,387 @@
+[
+    {
+        "Method":  "POST",
+        "Path":  "/auth/login",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "Login successful"
+    },
+    {
+        "Method":  "POST",
+        "Path":  "/auth/login",
+        "Status":  401,
+        "Result":  "PASS",
+        "Notes":  "expected error 401"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/auth/me",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "POST",
+        "Path":  "/auth/refresh",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "Token refreshed"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/auth/me",
+        "Status":  401,
+        "Result":  "PASS",
+        "Notes":  "expected error 401"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/users?page=0\u0026size=5",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/users/2",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/users/99999",
+        "Status":  404,
+        "Result":  "PASS",
+        "Notes":  "expected error 404"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/organizations",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects?page=0\u0026size=10",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/all",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/MWS",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/MWS/members",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/ZZZZ",
+        "Status":  404,
+        "Result":  "PASS",
+        "Notes":  "expected error 404"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/dashboard/stats",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/dashboard/my-open-issues",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/dashboard/assigned-to-me",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/dashboard/activity",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/dashboard/missing",
+        "Status":  404,
+        "Result":  "PASS",
+        "Notes":  "expected error 404"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues?projectKey=MWS\u0026page=0\u0026size=5",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues/my-work?page=0\u0026size=5",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues/search?jql=project%20%3D%20MWS\u0026page=0\u0026size=5",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues/search?project=MWS\u0026status=To%20Do\u0026page=0\u0026size=5",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues/MWS-1",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues/MWS-1/comments",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues/MWS-1/activity",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues/MWS-1/subtasks",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/issues/NOPE-999",
+        "Status":  404,
+        "Result":  "PASS",
+        "Notes":  "expected error 404"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/MWS/board",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/MWS/backlog",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/MWS/sprints",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/MWS/statuses",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/MWS/labels",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/projects/MWS/components",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/search?q=MWS",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/search?q=",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/filters",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/notifications?page=0\u0026size=5",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/notifications/unread-count",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/dashboards",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/workflows/1/statuses",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/workflows/1/transitions",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/boards?projectId=1",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/sprints?projectId=1",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/labels?projectId=1",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/components?projectId=1",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "ok"
+    },
+    {
+        "Method":  "POST",
+        "Path":  "/projects/MWS/issues",
+        "Status":  201,
+        "Result":  "PASS",
+        "Notes":  "Issue created"
+    },
+    {
+        "Method":  "PATCH",
+        "Path":  "/issues/MWS-41/priority",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "Priority updated"
+    },
+    {
+        "Method":  "PATCH",
+        "Path":  "/issues/MWS-41/status",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "Status updated"
+    },
+    {
+        "Method":  "PATCH",
+        "Path":  "/issues/MWS-41/status",
+        "Status":  422,
+        "Result":  "PASS",
+        "Notes":  "expected client/server error"
+    },
+    {
+        "Method":  "POST",
+        "Path":  "/issues/MWS-41/comments",
+        "Status":  201,
+        "Result":  "PASS",
+        "Notes":  "Comment added"
+    },
+    {
+        "Method":  "POST",
+        "Path":  "/issues/MWS-41/watch",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "Watching issue"
+    },
+    {
+        "Method":  "DELETE",
+        "Path":  "/issues/MWS-41/watch",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "Stopped watching issue"
+    },
+    {
+        "Method":  "DELETE",
+        "Path":  "/issues/MWS-41",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "Issue deleted"
+    },
+    {
+        "Method":  "GET",
+        "Path":  "/actuator/health",
+        "Status":  200,
+        "Result":  "PASS",
+        "Notes":  "UP"
+    }
+]

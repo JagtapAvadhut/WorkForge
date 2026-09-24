@@ -1,0 +1,69 @@
+﻿=== 1) LOGIN ===
+OK login seedadmin id=2
+=== 2) REGISTER EXTRA USERS ===
+  skip avadhoot: The remote server returned an error: (409) Conflict.
+  skip jane.dev: The remote server returned an error: (409) Conflict.
+  skip john.pm: The remote server returned an error: (409) Conflict.
+  skip sara.qa: The remote server returned an error: (409) Conflict.
+  skip mike.ops: The remote server returned an error: (409) Conflict.
+  skip lisa.ux: The remote server returned an error: (409) Conflict.
+  skip tom.be: The remote server returned an error: (409) Conflict.
+  skip rita.fe: The remote server returned an error: (409) Conflict.
+OK users total=10
+=== 3) ORGANIZATION ===
+OK org IVL id=1
+=== 4) PROJECTS ===
+  reuse/skip MWS: The remote server returned an error: (409) Conflict.
+  reuse/skip PAY: The remote server returned an error: (409) Conflict.
+  reuse/skip MOB: The remote server returned an error: (409) Conflict.
+  reuse/skip INF: The remote server returned an error: (409) Conflict.
+  reuse/skip AI: The remote server returned an error: (409) Conflict.
+OK projects=5
+OK project members assigned
+=== 5) LABELS + COMPONENTS ===
+OK labels/components
+=== 6) SPRINTS ===
+  started sprint Sprint 1 on MWS
+  started sprint Sprint 1 on PAY
+  started sprint Sprint 1 on MOB
+  started sprint Sprint 1 on INF
+  started sprint Sprint 1 on AI
+OK sprints
+=== 7) ISSUES (bulk) ===
+OK created ~200 issues (sample keys: MWS-1, MWS-2, MWS-3, MWS-4, MWS-5, MWS-6, MWS-7, MWS-8, MWS-9, MWS-10, MWS-11, MWS-12, MWS-13, MWS-14, MWS-15)
+=== 8) COMMENTS / WATCH / ACTIVITY ===
+OK comments~30 + watches
+=== 9) SAVED FILTERS ===
+  filter My Open Bugs
+  filter High Priority Work
+  filter MWS In Progress
+  filter Recently Updated
+=== 10) DASHBOARD + NOTIFICATIONS ===
+  dashboard id=1
+  notifications total=20
+=== 11) API SMOKE TESTS ===
+PASS auth/me
+PASS users page
+PASS projects list
+PASS projects/all
+PASS issues list MWS
+PASS issues/my-work
+PASS issues/search jql
+PASS board MWS
+PASS backlog MWS
+PASS sprints MWS
+PASS statuses MWS
+PASS labels MWS
+PASS components MWS
+PASS issue get MWS-1
+PASS issue comments MWS-1
+PASS issue activity MWS-1
+PASS filters
+PASS dashboards
+PASS notifications
+PASS actuator health
+=== SUMMARY ===
+Issues created (approx): 200
+Smoke PASS=20 FAIL=0
+Login: seedadmin / SeedPass123!
+UI: http://localhost:5173  API: http://localhost:8080/swagger-ui.html
