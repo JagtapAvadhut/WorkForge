@@ -1,0 +1,41 @@
+server:
+  # Prefer MCP_SERVER_PORT. Avoid relying on SERVER_PORT (often set to 8090 for the AI backend).
+  port: ${MCP_SERVER_PORT:8091}
+
+spring:
+  application:
+    name: workforge-ai-mcp-server
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:workforge_ai}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  ai:
+    mcp:
+      server:
+        name: workforge-ai-mcp
+        version: 0.1.0
+        type: SYNC
+        protocol: STREAMABLE
+        instructions: >
+          WorkForge AI read-only MCP server.
+          Exposes getIssue, searchIssues, and getProject only.
+          No create/update/delete tools.
+        streamable-http:
+          mcp-endpoint: /mcp
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+workforge:
+  ai:
+    tools:
+      default-search-limit: ${AI_TOOLS_DEFAULT_SEARCH_LIMIT:10}
+      max-search-limit: ${AI_TOOLS_MAX_SEARCH_LIMIT:50}
+
+logging:
+  level:
+    com.avadhoot.workforgeai: INFO
+    org.springframework.ai.mcp: INFO

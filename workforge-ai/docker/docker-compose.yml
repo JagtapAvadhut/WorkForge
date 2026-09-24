@@ -1,0 +1,23 @@
+# Optional Postgres for local WorkForge AI (separate DB from main WorkForge app).
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: workforge_ai
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - workforge_ai_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d workforge_ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  workforge_ai_pg:
+
+# Default local setup uses host PostgreSQL (DB_NAME=workforge_ai on port 5432).
+# Prefer host Ollama: OLLAMA_BASE_URL=http://localhost:11434

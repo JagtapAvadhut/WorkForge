@@ -1,0 +1,11 @@
+# WorkForge AI
+target/
+.idea/
+*.iml
+.vscode/
+node_modules/
+dist/
+.env
+*.log
+data/uploads/
+.DS_Store

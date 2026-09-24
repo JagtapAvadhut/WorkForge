@@ -1,0 +1,101 @@
+server:
+  port: ${SERVER_PORT:${AI_BACKEND_PORT:8090}}
+
+spring:
+  application:
+    name: workforge-ai
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:workforge_ai}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    placeholders:
+      embeddingDimensions: ${AI_EMBEDDING_DIMENSIONS:768}
+  ai:
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      chat:
+        options:
+          model: ${OLLAMA_MODEL:qwen2.5-coder:3b}
+          temperature: 0.3
+      embedding:
+        model: ${OLLAMA_EMBEDDING_MODEL:nomic-embed-text}
+    vectorstore:
+      pgvector:
+        initialize-schema: false
+        schema-name: public
+        table-name: ai_documents
+        id-type: UUID
+        dimensions: ${AI_EMBEDDING_DIMENSIONS:768}
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+    mcp:
+      client:
+        enabled: true
+        name: workforge-ai-mcp-client
+        version: 0.1.0
+        type: SYNC
+        request-timeout: ${MCP_REQUEST_TIMEOUT:20s}
+        initialized: false
+        toolcallback:
+          enabled: true
+        streamable-http:
+          connections:
+            workforge-mcp:
+              url: ${MCP_SERVER_URL:http://localhost:8091}
+              endpoint: ${MCP_ENDPOINT:/mcp}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+workforge:
+  ai:
+    chat:
+      max-history-messages: ${AI_MAX_HISTORY_MESSAGES:10}
+    embeddings:
+      preview-values: ${AI_EMBEDDING_PREVIEW_VALUES:8}
+      dimensions: ${AI_EMBEDDING_DIMENSIONS:768}
+    documents:
+      max-top-k: ${AI_DOCUMENTS_MAX_TOP_K:20}
+      default-top-k: ${AI_DOCUMENTS_DEFAULT_TOP_K:5}
+      default-page-size: ${AI_DOCUMENTS_DEFAULT_PAGE_SIZE:20}
+      max-page-size: ${AI_DOCUMENTS_MAX_PAGE_SIZE:100}
+    rag:
+      default-top-k: ${AI_RAG_DEFAULT_TOP_K:5}
+      max-top-k: ${AI_RAG_MAX_TOP_K:20}
+      similarity-threshold: ${AI_RAG_SIMILARITY_THRESHOLD:0.45}
+      no-context-message: ${AI_RAG_NO_CONTEXT_MESSAGE:I don't have enough information in the available knowledge.}
+    tools:
+      default-search-limit: ${AI_TOOLS_DEFAULT_SEARCH_LIMIT:10}
+      max-search-limit: ${AI_TOOLS_MAX_SEARCH_LIMIT:50}
+    agent:
+      max-steps: ${AI_AGENT_MAX_STEPS:5}
+    graph-agent:
+      max-iterations: ${AI_GRAPH_AGENT_MAX_ITERATIONS:5}
+    multi-agent:
+      max-iterations: ${AI_MULTI_AGENT_MAX_ITERATIONS:5}
+      max-specialist-calls: ${AI_MULTI_AGENT_MAX_SPECIALIST_CALLS:10}
+    security:
+      max-input-chars: ${AI_SECURITY_MAX_INPUT_CHARS:4000}
+      max-tool-calls: ${AI_SECURITY_MAX_TOOL_CALLS:10}
+      max-agent-iterations: ${AI_SECURITY_MAX_AGENT_ITERATIONS:5}
+      max-specialist-calls: ${AI_SECURITY_MAX_SPECIALIST_CALLS:10}
+      block-suspicious: ${AI_SECURITY_BLOCK_SUSPICIOUS:true}
+    mcp:
+      server-url: ${MCP_SERVER_URL:http://localhost:8091}
+      endpoint: ${MCP_ENDPOINT:/mcp}
+      allowed-tools: getIssue,searchIssues,getProject
+    memory:
+      max-recent-messages: ${AI_MEMORY_MAX_RECENT_MESSAGES:10}
+      max-retrieve: ${AI_MEMORY_MAX_RETRIEVE:5}
+
+logging:
+  level:
+    com.avadhoot.workforgeai: INFO
+    org.springframework.ai: INFO
+    org.springframework.ai.mcp: INFO
